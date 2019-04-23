@@ -101,16 +101,34 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_newsletter) {
 
         } else if (id == R.id.nav_agenda) {
-
+            Fragment fragment = new AgendaFragment();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.content_frame, fragment);
+            fragmentTransaction.addToBackStack("tag");
+            fragmentTransaction.commit();
         } else if (id == R.id.nav_profil) {
 
         } else if (id == R.id.nav_faq) {
+            Fragment fragment = new FAQFragment();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.content_frame, fragment);
+            fragmentTransaction.addToBackStack("tag");
+            fragmentTransaction.commit();
 
         } else if (id == R.id.nav_life_at) {
 
         } else if (id == R.id.nav_sign) {
             Intent intent = new Intent(MainActivity.this, SignIn.class);
             startActivity(intent);
+        } else if (id == R.id.nav_contact) {
+            Fragment fragment = new KontakFragment();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.content_frame, fragment);
+            fragmentTransaction.addToBackStack("tag");
+            fragmentTransaction.commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
