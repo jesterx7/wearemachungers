@@ -27,15 +27,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -99,7 +90,12 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.addToBackStack("tag");
             fragmentTransaction.commit();
         } else if (id == R.id.nav_newsletter) {
-
+            Fragment fragment = new NewsletterFragment();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.content_frame, fragment);
+            fragmentTransaction.addToBackStack("tag");
+            fragmentTransaction.commit();
         } else if (id == R.id.nav_agenda) {
             Fragment fragment = new AgendaFragment();
             FragmentManager fragmentManager = getFragmentManager();
@@ -108,7 +104,12 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.addToBackStack("tag");
             fragmentTransaction.commit();
         } else if (id == R.id.nav_profil) {
-
+            Fragment fragment = new InformasiFragment();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.content_frame, fragment);
+            fragmentTransaction.addToBackStack("tag");
+            fragmentTransaction.commit();
         } else if (id == R.id.nav_faq) {
             Fragment fragment = new FAQFragment();
             FragmentManager fragmentManager = getFragmentManager();
@@ -116,7 +117,6 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.content_frame, fragment);
             fragmentTransaction.addToBackStack("tag");
             fragmentTransaction.commit();
-
         } else if (id == R.id.nav_life_at) {
 
         } else if (id == R.id.nav_sign) {
