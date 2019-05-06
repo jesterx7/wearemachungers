@@ -1,5 +1,6 @@
 package com.example.user.wearemachungers;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -33,9 +34,52 @@ public class ListFAQAdapter extends RecyclerView.Adapter<ListFAQAdapter.FAQViewH
     }
 
     @Override
-    public void onBindViewHolder(FAQViewHolder holder, int position) {
+    public void onBindViewHolder(final FAQViewHolder holder, int position) {
         holder.tvPertanyaanFAQ.setText(getListFAQ().get(position).getPertanyaanFAQ());
         holder.tvJawabanFAQ.setText(getListFAQ().get(position).getJawabanFAQ());
+        holder.imgIconFAQ.setTag(R.drawable.ic_arrow_drop_down);
+        holder.imgIconFAQ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (holder.imgIconFAQ.getTag().equals(R.drawable.ic_arrow_drop_down)) {
+                    holder.imgIconFAQ.setImageResource(R.drawable.ic_arrow_drop_up);
+                    holder.imgIconFAQ.setTag(R.drawable.ic_arrow_drop_up);
+                    holder.tvJawabanFAQ.setVisibility(View.VISIBLE);
+                    holder.tvJawabanFAQ.setAlpha(0.0f);
+                    holder.tvJawabanFAQ.animate()
+                            .translationY(0)
+                            .alpha(1.0f)
+                            .setListener(null);
+                } else {
+                    holder.imgIconFAQ.setImageResource(R.drawable.ic_arrow_drop_down);
+                    holder.imgIconFAQ.setTag(R.drawable.ic_arrow_drop_down);
+                    holder.tvJawabanFAQ.animate()
+                            .translationY(-10)
+                            .alpha(0.0f)
+                            .setListener(new Animator.AnimatorListener() {
+                                @Override
+                                public void onAnimationStart(Animator animator) {
+
+                                }
+
+                                @Override
+                                public void onAnimationEnd(Animator animator) {
+                                    holder.tvJawabanFAQ.setVisibility(View.GONE);
+                                }
+
+                                @Override
+                                public void onAnimationCancel(Animator animator) {
+
+                                }
+
+                                @Override
+                                public void onAnimationRepeat(Animator animator) {
+
+                                }
+                            });
+                }
+            }
+        });
     }
 
     @Override

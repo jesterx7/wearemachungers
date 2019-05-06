@@ -3,6 +3,7 @@ package com.example.user.wearemachungers;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -42,6 +43,7 @@ public class AgendaFragment extends Fragment {
         listAgenda.add(agenda1);
         listAgenda.add(agenda2);
 
+        rvListAgenda.addItemDecoration(new DividerItemDecoration(rvListAgenda.getContext(), DividerItemDecoration.VERTICAL));
         rvListAgenda.setLayoutManager(new LinearLayoutManager(getActivity()));
         ListAgendaAdapter listAgendaAdapter = new ListAgendaAdapter(view.getContext());
         listAgendaAdapter.setListAgenda(listAgenda);

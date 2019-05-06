@@ -16,20 +16,29 @@
                 android:id="@+id/imgCoverAgenda"
                 android:scaleType="center"
                 android:layout_width="100dp"
-                android:layout_height="50dp" />
+                android:layout_height="50dp"
+                android:layout_weight="0"/>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:paddingLeft="5dp">
                 <TextView
                     android:id="@+id/tvJudulAgenda"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
                 <TextView
                     android:id="@+id/tvTanggalAgenda"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_keyboard_arrow_right"
+                android:layout_gravity="center"/>
         </LinearLayout>
     </LinearLayout>
 

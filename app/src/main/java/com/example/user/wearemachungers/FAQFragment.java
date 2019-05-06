@@ -3,6 +3,7 @@ package com.example.user.wearemachungers;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -38,6 +39,7 @@ public class FAQFragment extends Fragment {
         listFAQ.add(faq1);
         listFAQ.add(faq2);
 
+        rvListFAQ.addItemDecoration(new DividerItemDecoration(rvListFAQ.getContext(), DividerItemDecoration.VERTICAL));
         rvListFAQ.setLayoutManager(new LinearLayoutManager(getActivity()));
         ListFAQAdapter listFAQAdapter = new ListFAQAdapter(view.getContext());
         listFAQAdapter.setListFAQ(listFAQ);
