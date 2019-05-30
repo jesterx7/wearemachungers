@@ -1,15 +1,22 @@
-package com.example.user.wearemachungers;
+package com.example.user.wearemachungers.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.user.wearemachungers.Classes.Kontak;
+import com.example.user.wearemachungers.R;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 public class ListKontakAdapter extends RecyclerView.Adapter<ListKontakAdapter.KontakViewHolder> {
@@ -35,11 +42,32 @@ public class ListKontakAdapter extends RecyclerView.Adapter<ListKontakAdapter.Ko
     }
 
     @Override
-    public void onBindViewHolder(KontakViewHolder holder, int position) {
+    public void onBindViewHolder(final KontakViewHolder holder, final int position) {
         Glide.with(context)
                 .load("https://4.bp.blogspot.com/-CuW_nyiedwM/WIqxTKmwHYI/AAAAAAAACUg/zR56L8nXIE4KSoToVNLdLsyoiKQY5rZUQCLcB/s400/VEKTOR%2BICON1.png")
                 .crossFade()
                 .into(holder.imgWA);
+        holder.imgWA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PackageManager pm= context.getPackageManager();
+                try {
+
+                    PackageManager packageManager = context.getPackageManager();
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+
+                    String url = "https://api.whatsapp.com/send?phone="+ listKontak.get(position).getNomerWA() +"&text=" + URLEncoder.encode("Hello World", "UTF-8");
+                    i.setPackage("com.whatsapp");
+                    i.setData(Uri.parse(url));
+                    if (i.resolveActivity(packageManager) != null) {
+                        context.startActivity(i);
+                    }
+                } catch (Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(context, "WhatsApp Not Installed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         holder.tvBidang.setText(getListKontak().get(position).getBidang());
         holder.tvNamaKontak.setText(getListKontak().get(position).getNama());
         holder.tvNomerKontak.setText(getListKontak().get(position).getNomerWA());

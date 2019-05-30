@@ -1,13 +1,18 @@
-package com.example.user.wearemachungers;
+package com.example.user.wearemachungers.Fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.user.wearemachungers.Adapter.ListNewsletterAdapter;
+import com.example.user.wearemachungers.Classes.Newsletter;
+import com.example.user.wearemachungers.R;
 
 import java.util.ArrayList;
 
@@ -40,6 +45,7 @@ public class NewsletterFragment extends Fragment {
         listNewsletter.add(newsletter1);
         listNewsletter.add(newsletter2);
 
+        rvListNewsletter.addItemDecoration(new DividerItemDecoration(view.getContext(), DividerItemDecoration.VERTICAL));
         rvListNewsletter.setLayoutManager(new LinearLayoutManager(getActivity()));
         ListNewsletterAdapter listNewsletterAdapter = new ListNewsletterAdapter(view.getContext());
         listNewsletterAdapter.setListNewsletter(listNewsletter);

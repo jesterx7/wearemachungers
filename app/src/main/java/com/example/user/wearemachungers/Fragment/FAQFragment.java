@@ -1,4 +1,4 @@
-package com.example.user.wearemachungers;
+package com.example.user.wearemachungers.Fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -9,6 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.user.wearemachungers.Classes.FAQ;
+import com.example.user.wearemachungers.Adapter.ListFAQAdapter;
+import com.example.user.wearemachungers.R;
 
 import java.util.ArrayList;
 

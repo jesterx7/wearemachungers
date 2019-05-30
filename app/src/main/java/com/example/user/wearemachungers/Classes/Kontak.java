@@ -1,4 +1,4 @@
-package com.example.user.wearemachungers;
+package com.example.user.wearemachungers.Classes;
 
 public class Kontak {
     private String id;

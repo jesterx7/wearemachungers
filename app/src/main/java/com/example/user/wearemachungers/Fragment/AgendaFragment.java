@@ -1,4 +1,4 @@
-package com.example.user.wearemachungers;
+package com.example.user.wearemachungers.Fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -9,6 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.user.wearemachungers.Classes.Agenda;
+import com.example.user.wearemachungers.Adapter.ListAgendaAdapter;
+import com.example.user.wearemachungers.R;
 
 import java.util.ArrayList;
 
@@ -31,6 +35,7 @@ public class AgendaFragment extends Fragment {
         agenda1.setLastEdit("21 April 2019");
         agenda1.setTglMulai("21");
         agenda1.setTglSelesai("21 April 2019");
+        agenda1.setDetail("Para mahasiswa diharapkan memakai baju batik");
 
         Agenda agenda2 = new Agenda();
         agenda2.setCover("https://cosmopolitanfm.com/wp-content/uploads/2016/12/perayaan-unik-hari-raya-natal-di-dunia.jpg");
@@ -39,6 +44,7 @@ public class AgendaFragment extends Fragment {
         agenda2.setLastEdit("21 April 2019");
         agenda2.setTglMulai("24");
         agenda2.setTglSelesai("25 Desember 2019");
+        agenda2.setDetail("Libur pada tanggal merah untuk memperingati hari natal");
 
         listAgenda.add(agenda1);
         listAgenda.add(agenda2);

@@ -1,14 +1,10 @@
-package com.example.user.wearemachungers;
+package com.example.user.wearemachungers.Activity;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,8 +13,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
+
+import com.example.user.wearemachungers.Fragment.AgendaFragment;
+import com.example.user.wearemachungers.Fragment.BeritaFragment;
+import com.example.user.wearemachungers.Fragment.FAQFragment;
+import com.example.user.wearemachungers.Fragment.InformasiFragment;
+import com.example.user.wearemachungers.Fragment.KontakFragment;
+import com.example.user.wearemachungers.Fragment.LifeAtMachungFragment;
+import com.example.user.wearemachungers.Fragment.NewsletterFragment;
+import com.example.user.wearemachungers.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -121,7 +124,12 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.addToBackStack("tag");
             fragmentTransaction.commit();
         } else if (id == R.id.nav_life_at) {
-
+            Fragment fragment = new LifeAtMachungFragment();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.content_frame, fragment);
+            fragmentTransaction.addToBackStack("tag");
+            fragmentTransaction.commit();
         } else if (id == R.id.nav_sign) {
             Intent intent = new Intent(MainActivity.this, SignIn.class);
             startActivity(intent);

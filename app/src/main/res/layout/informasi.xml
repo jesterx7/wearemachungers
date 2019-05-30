@@ -23,28 +23,91 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Visi"
-                    android:textStyle="bold"/>
-                <com.bluejamesbond.text.DocumentView
-                    android:id="@+id/tvVisiInformasi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    ext:documentView_textSize="10dp"
-                    ext:documentView_textAlignment="justified"/>
+                    android:text="Sejarah Ma Chung"
+                    android:textStyle="bold"
+                    android:padding="5dp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Misi"
-                    android:layout_marginTop="10dp"
-                    android:textStyle="bold"/>
-                <com.bluejamesbond.text.DocumentView
-                    android:id="@+id/tvMisiInformasi"
+                    android:text="Visi dan Misi Ma Chung"
+                    android:textStyle="bold"
+                    android:padding="5dp"/>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    ext:documentView_textSize="10dp"
-                    ext:documentView_textAlignment="justified"/>
+                    android:orientation="horizontal"
+                    android:background="@drawable/border">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Informasi Fakultas"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"/>
+                    <ImageView
+                        android:id="@+id/imgExpandFaculty"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_arrow_drop_down"
+                        android:layout_gravity="end"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/llListFakultas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:visibility="gone">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Sains dan Teknologi"
+                            android:layout_weight="1"/>
+                        <ImageView
+                            android:id="@+id/imgDetailFST"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_keyboard_arrow_right"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Ekonomi dan Bisnis"
+                            android:layout_weight="1"/>
+                        <ImageView
+                            android:id="@+id/imgDetailFEB"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_keyboard_arrow_right"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Ilmu dan Bahasa"
+                            android:layout_weight="1"/>
+                        <ImageView
+                            android:id="@+id/imgDetailFIB"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_keyboard_arrow_right"/>
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

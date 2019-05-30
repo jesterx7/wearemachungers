@@ -1,10 +1,11 @@
-package com.example.user.wearemachungers;
+package com.example.user.wearemachungers.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.user.wearemachungers.R;
 
 public class SignIn extends AppCompatActivity {
     private ImageView imgBackground;

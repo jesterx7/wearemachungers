@@ -1,4 +1,4 @@
-package com.example.user.wearemachungers;
+package com.example.user.wearemachungers.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.user.wearemachungers.Classes.Agenda;
+import com.example.user.wearemachungers.R;
 
 import java.util.ArrayList;
 

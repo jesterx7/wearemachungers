@@ -1,19 +1,25 @@
-package com.example.user.wearemachungers;
+package com.example.user.wearemachungers.Fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.user.wearemachungers.Classes.Berita;
+import com.example.user.wearemachungers.Adapter.ListBeritaAdapter;
+import com.example.user.wearemachungers.R;
 
 import java.util.ArrayList;
 
 public class BeritaFragment extends Fragment {
     private View view;
     private RecyclerView rvListBerita;
+    private SearchView searchBerita;
     private ArrayList<Berita> listBerita;
 
     @Nullable
@@ -21,6 +27,7 @@ public class BeritaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.list_berita, container, false);
         rvListBerita = view.findViewById(R.id.rvListBerita);
+        searchBerita = view.findViewById(R.id.searchBerita);
         listBerita = new ArrayList<>();
 
         Berita berita1 = new Berita();
@@ -41,9 +48,23 @@ public class BeritaFragment extends Fragment {
         listBerita.add(berita2);
 
         rvListBerita.setLayoutManager(new LinearLayoutManager(getActivity()));
-        ListBeritaAdapter listBeritaAdapter = new ListBeritaAdapter(view.getContext());
+        final ListBeritaAdapter listBeritaAdapter = new ListBeritaAdapter(view.getContext());
         listBeritaAdapter.setListBerita(listBerita);
         rvListBerita.setAdapter(listBeritaAdapter);
+
+        searchBerita.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                listBeritaAdapter.getFilter().filter(s);
+                return false;
+            }
+        });
+
         return view;
     }
 }

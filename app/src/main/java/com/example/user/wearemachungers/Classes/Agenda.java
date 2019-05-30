@@ -1,4 +1,4 @@
-package com.example.user.wearemachungers;
+package com.example.user.wearemachungers.Classes;
 
 public class Agenda {
     private String id;
@@ -6,6 +6,7 @@ public class Agenda {
     private String cover;
     private String tglMulai;
     private String tglSelesai;
+    private String detail;
     private String lastEdit;
 
     public String getId() {
@@ -46,6 +47,14 @@ public class Agenda {
 
     public void setTglSelesai(String tglSelesai) {
         this.tglSelesai = tglSelesai;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
     public String getLastEdit() {

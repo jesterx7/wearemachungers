@@ -1,4 +1,4 @@
-package com.example.user.wearemachungers;
+package com.example.user.wearemachungers.Adapter;
 
 import android.animation.Animator;
 import android.content.Context;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.user.wearemachungers.Classes.FAQ;
+import com.example.user.wearemachungers.R;
 
 import java.util.ArrayList;
 
