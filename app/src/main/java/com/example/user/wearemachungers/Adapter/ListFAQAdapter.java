@@ -2,6 +2,7 @@ package com.example.user.wearemachungers.Adapter;
 
 import android.animation.Animator;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.example.user.wearemachungers.Classes.FAQ;
 import com.example.user.wearemachungers.R;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class ListFAQAdapter extends RecyclerView.Adapter<ListFAQAdapter.FAQViewHolder> {
@@ -101,6 +103,12 @@ public class ListFAQAdapter extends RecyclerView.Adapter<ListFAQAdapter.FAQViewH
             imgIconFAQ = itemView.findViewById(R.id.imgIconFAQ);
             tvPertanyaanFAQ = itemView.findViewById(R.id.tvPertanyaanFAQ);
             tvJawabanFAQ = itemView.findViewById(R.id.tvJawabanFAQ);
+
+            //Settings Font for TextView
+            Typeface typefacePertanyaanFAQ = Typeface.createFromAsset(context.getAssets(), "fonts/opensans_bold.ttf");
+            Typeface typefaceJawabanFAQ = Typeface.createFromAsset(context.getAssets(), "fonts/opensans_regular.ttf");
+            tvPertanyaanFAQ.setTypeface(typefacePertanyaanFAQ);
+            tvJawabanFAQ.setTypeface(typefaceJawabanFAQ);
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.user.wearemachungers.Adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.example.user.wearemachungers.Classes.Agenda;
 import com.example.user.wearemachungers.R;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class ListAgendaAdapter extends RecyclerView.Adapter<ListAgendaAdapter.AgendaViewHolder> {
@@ -62,6 +64,12 @@ public class ListAgendaAdapter extends RecyclerView.Adapter<ListAgendaAdapter.Ag
             imgCoverAgenda = itemView.findViewById(R.id.imgCoverAgenda);
             tvJudulAgenda = itemView.findViewById(R.id.tvJudulAgenda);
             tvTanggalAgenda = itemView.findViewById(R.id.tvTanggalAgenda);
+
+            //Settings Font for TextView
+            Typeface typefaceJudulAgenda = Typeface.createFromAsset(context.getAssets(), "fonts/opensans_bold.ttf");
+            Typeface typefaceTanggalAgenda = Typeface.createFromAsset(context.getAssets(), "fonts/roboto_condensed_light.ttf");
+            tvJudulAgenda.setTypeface(typefaceJudulAgenda);
+            tvTanggalAgenda.setTypeface(typefaceTanggalAgenda);
         }
     }
 }

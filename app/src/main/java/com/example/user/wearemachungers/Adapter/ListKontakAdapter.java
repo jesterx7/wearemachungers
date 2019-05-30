@@ -3,6 +3,7 @@ package com.example.user.wearemachungers.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -91,6 +92,12 @@ public class ListKontakAdapter extends RecyclerView.Adapter<ListKontakAdapter.Ko
             tvBidang = itemView.findViewById(R.id.tvBidang);
             tvNamaKontak = itemView.findViewById(R.id.tvNamaKontak);
             tvNomerKontak = itemView.findViewById(R.id.tvNomerKontak);
+
+            //Settings Font for TextView
+            Typeface typefaceBidang = Typeface.createFromAsset(context.getAssets(), "fonts/opensans_bold.ttf");
+            Typeface typefaceNamaKontak = Typeface.createFromAsset(context.getAssets(), "fonts/opensans_semibold.ttf");
+            tvBidang.setTypeface(typefaceBidang);
+            tvNamaKontak.setTypeface(typefaceNamaKontak);
         }
     }
 }

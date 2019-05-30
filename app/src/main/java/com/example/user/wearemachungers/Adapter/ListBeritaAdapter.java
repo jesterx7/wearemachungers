@@ -1,6 +1,8 @@
 package com.example.user.wearemachungers.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -101,6 +103,14 @@ public class ListBeritaAdapter extends RecyclerView.Adapter<ListBeritaAdapter.Be
             tvJudulBerita = itemView.findViewById(R.id.tvJudulBerita);
             tvTglBerita = itemView.findViewById(R.id.tvTanggalBerita);
             btnDetail = itemView.findViewById(R.id.btnDetail);
+
+            //Settings Font for TextView
+            Typeface typefaceJudul = Typeface.createFromAsset(context.getAssets(), "fonts/roboto_condensed_bold.ttf");
+            tvJudulBerita.setTypeface(typefaceJudul);
+
+
+            //Settings Opacity For Date Berita Created
+            tvTglBerita.setTextColor(Color.argb(50, 0, 0, 0));
         }
     }
 }
