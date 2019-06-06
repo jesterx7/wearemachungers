@@ -3,13 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="10dp">
+    android:padding="5dp">
 
     <android.support.v7.widget.SearchView
         android:id="@+id/searchBerita"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="@drawable/customborder"
+        android:layout_gravity="end"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"/>
 

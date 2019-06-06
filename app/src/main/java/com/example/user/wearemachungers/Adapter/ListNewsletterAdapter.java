@@ -1,5 +1,6 @@
 package com.example.user.wearemachungers.Adapter;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,10 +13,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.user.wearemachungers.Activity.MainActivity;
 import com.example.user.wearemachungers.Classes.Newsletter;
 import com.example.user.wearemachungers.R;
 
@@ -55,7 +60,6 @@ public class ListNewsletterAdapter extends RecyclerView.Adapter<ListNewsletterAd
             @Override
             public void onClick(View view) {
                 final Thread thread = new Thread(new Runnable() {
-
                     @Override
                     public void run() {
                         try  {
@@ -96,6 +100,7 @@ public class ListNewsletterAdapter extends RecyclerView.Adapter<ListNewsletterAd
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
+                            Toast.makeText(context, "Error " + "pdf_" + String.valueOf(position) + ".pdf" , Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

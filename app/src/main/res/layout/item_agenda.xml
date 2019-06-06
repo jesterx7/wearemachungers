@@ -19,6 +19,7 @@
                 android:layout_height="50dp"
                 android:layout_weight="0"/>
             <LinearLayout
+                android:id="@+id/llAgendaFirstDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -34,7 +35,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+            <com.example.user.wearemachungers.CustomFonts.LightRobotoTextView
+                android:id="@+id/tvDetailAgenda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="5dp"
+                android:visibility="gone"/>
             <ImageView
+                android:id="@+id/imgDetailAgenda"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_keyboard_arrow_right"

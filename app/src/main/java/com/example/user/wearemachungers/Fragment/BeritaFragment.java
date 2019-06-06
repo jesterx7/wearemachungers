@@ -52,6 +52,15 @@ public class BeritaFragment extends Fragment {
         listBeritaAdapter.setListBerita(listBerita);
         rvListBerita.setAdapter(listBeritaAdapter);
 
+        //Settings for make all of search view clickable
+        searchBerita.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchBerita.setIconified(false);
+            }
+        });
+
+        //Settings search query filter
         searchBerita.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
