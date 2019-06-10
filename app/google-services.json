@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "276693522271",
+    "firebase_url": "https://wearemachungers-39834.firebaseio.com",
+    "project_id": "wearemachungers-39834",
+    "storage_bucket": "wearemachungers-39834.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:276693522271:android:27965770e6cccba2",
+        "android_client_info": {
+          "package_name": "com.example.user.wearemachungers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "276693522271-34ar6icffclr8v5msuppajve9m8an4j8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_tj-vqhtZUMTWc_8krSJhT62RMr8EMt4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "276693522271-34ar6icffclr8v5msuppajve9m8an4j8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
