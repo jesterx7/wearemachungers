@@ -1,33 +1,24 @@
 package com.example.user.wearemachungers.Classes;
 
 public class FAQ {
-    private String id;
-    private String pertanyaanFAQ;
-    private String jawabanFAQ;
+    private String pertanyaan;
+    private String jawaban;
     private String lastEdit;
 
-    public String getId() {
-        return id;
+    public String getPertanyaan() {
+        return pertanyaan;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setPertanyaan(String pertanyaanFAQ) {
+        this.pertanyaan = pertanyaanFAQ;
     }
 
-    public String getPertanyaanFAQ() {
-        return pertanyaanFAQ;
+    public String getJawaban() {
+        return jawaban;
     }
 
-    public void setPertanyaanFAQ(String pertanyaanFAQ) {
-        this.pertanyaanFAQ = pertanyaanFAQ;
-    }
-
-    public String getJawabanFAQ() {
-        return jawabanFAQ;
-    }
-
-    public void setJawabanFAQ(String jawabanFAQ) {
-        this.jawabanFAQ = jawabanFAQ;
+    public void setJawaban(String jawabanFAQ) {
+        this.jawaban = jawabanFAQ;
     }
 
     public String getLastEdit() {

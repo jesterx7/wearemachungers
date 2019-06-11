@@ -26,7 +26,15 @@ public class ListBeritaAdapter extends RecyclerView.Adapter<ListBeritaAdapter.Be
     private ArrayList<Berita> listBerita;
     private ArrayList<Berita> listBeritaCopy;
 
+    public void addAll(ArrayList<Berita> newBerita) {
+        int initSize = listBerita.size();
+        listBerita.addAll(newBerita);
+        listBeritaCopy = new ArrayList<>(listBerita);
+        notifyItemRangeChanged(initSize, newBerita.size());
+    }
+
     public ListBeritaAdapter(Context context) {
+        this.listBerita = new ArrayList<>();
         this.context = context;
     }
 
@@ -34,10 +42,6 @@ public class ListBeritaAdapter extends RecyclerView.Adapter<ListBeritaAdapter.Be
         return listBerita;
     }
 
-    public void setListBerita(ArrayList<Berita> listBerita) {
-        this.listBerita = listBerita;
-        listBeritaCopy = new ArrayList<>(listBerita);
-    }
 
     @Override
     public BeritaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -48,24 +52,24 @@ public class ListBeritaAdapter extends RecyclerView.Adapter<ListBeritaAdapter.Be
     @Override
     public void onBindViewHolder(final BeritaViewHolder holder, int position) {
         Glide.with(context)
-                .load(getListBerita().get(position).getGambar())
+                .load(getListBerita().get(position).getImg_url())
                 .crossFade()
                 .into(holder.imgCoverBerita);
         holder.tvJudulBerita.setText(getListBerita().get(position).getJudul());
         holder.tvTglBerita.setText(getListBerita().get(position).getLast_edit());
-        holder.tvDetailBerita.setText(getListBerita().get(position).getDetail());
-        holder.btnDetail.setOnClickListener(new View.OnClickListener() {
+        holder.tvKontenBerita.setText(getListBerita().get(position).getKonten());
+        holder.btnkonten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (holder.tvDetailBerita.getVisibility() == View.GONE) {
-                    holder.tvDetailBerita.setVisibility(View.VISIBLE);
-                    holder.tvDetailBerita.setAlpha(0.0f);
-                    holder.tvDetailBerita.animate()
+                if (holder.tvKontenBerita.getVisibility() == View.GONE) {
+                    holder.tvKontenBerita.setVisibility(View.VISIBLE);
+                    holder.tvKontenBerita.setAlpha(0.0f);
+                    holder.tvKontenBerita.animate()
                             .translationY(0)
                             .alpha(1.0f)
                             .setListener(null);
                 } else {
-                    holder.tvDetailBerita.animate()
+                    holder.tvKontenBerita.animate()
                             .translationY(-10)
                             .alpha(0.0f)
                             .setListener(new Animator.AnimatorListener() {
@@ -76,7 +80,7 @@ public class ListBeritaAdapter extends RecyclerView.Adapter<ListBeritaAdapter.Be
 
                                 @Override
                                 public void onAnimationEnd(Animator animator) {
-                                    holder.tvDetailBerita.setVisibility(View.GONE);
+                                    holder.tvKontenBerita.setVisibility(View.GONE);
                                 }
 
                                 @Override
@@ -137,9 +141,9 @@ public class ListBeritaAdapter extends RecyclerView.Adapter<ListBeritaAdapter.Be
         private LinearLayout llShortDisplay;
         private LinearLayout llExpandDisplay;
         private TextView tvJudulBerita;
-        private TextView tvDetailBerita;
+        private TextView tvKontenBerita;
         private TextView tvTglBerita;
-        private Button btnDetail;
+        private Button btnkonten;
         public BeritaViewHolder(View itemView) {
             super(itemView);
 
@@ -147,9 +151,9 @@ public class ListBeritaAdapter extends RecyclerView.Adapter<ListBeritaAdapter.Be
             llShortDisplay = itemView.findViewById(R.id.llShortDisplay);
             llExpandDisplay = itemView.findViewById(R.id.llExpandDisplay);
             tvJudulBerita = itemView.findViewById(R.id.tvJudulBerita);
-            tvDetailBerita = itemView.findViewById(R.id.tvDetailBerita);
+            tvKontenBerita = itemView.findViewById(R.id.tvKontenBerita);
             tvTglBerita = itemView.findViewById(R.id.tvTanggalBerita);
-            btnDetail = itemView.findViewById(R.id.btnDetail);
+            btnkonten = itemView.findViewById(R.id.btnKonten);
 
             //Settings Font for TextView
             Typeface typefaceJudul = Typeface.createFromAsset(context.getAssets(), "fonts/roboto_condensed_bold.ttf");

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.user.wearemachungers.Classes.Berita;
 import com.example.user.wearemachungers.Classes.FAQ;
 import com.example.user.wearemachungers.R;
 
@@ -21,15 +22,18 @@ public class ListFAQAdapter extends RecyclerView.Adapter<ListFAQAdapter.FAQViewH
     private ArrayList<FAQ> listFAQ;
 
     public ListFAQAdapter(Context context) {
+        this.listFAQ = new ArrayList<>();
         this.context = context;
+    }
+
+    public void addAll(ArrayList<FAQ> newBerita) {
+        int initSize = listFAQ.size();
+        listFAQ.addAll(newBerita);
+        notifyItemRangeChanged(initSize, newBerita.size());
     }
 
     public ArrayList<FAQ> getListFAQ() {
         return listFAQ;
-    }
-
-    public void setListFAQ(ArrayList<FAQ> listFAQ) {
-        this.listFAQ = listFAQ;
     }
 
     @Override
@@ -40,8 +44,8 @@ public class ListFAQAdapter extends RecyclerView.Adapter<ListFAQAdapter.FAQViewH
 
     @Override
     public void onBindViewHolder(final FAQViewHolder holder, int position) {
-        holder.tvPertanyaanFAQ.setText(getListFAQ().get(position).getPertanyaanFAQ());
-        holder.tvJawabanFAQ.setText(getListFAQ().get(position).getJawabanFAQ());
+        holder.tvPertanyaanFAQ.setText(getListFAQ().get(position).getPertanyaan());
+        holder.tvJawabanFAQ.setText(getListFAQ().get(position).getJawaban());
         holder.imgIconFAQ.setTag(R.drawable.ic_arrow_drop_down);
         holder.imgIconFAQ.setOnClickListener(new View.OnClickListener() {
             @Override

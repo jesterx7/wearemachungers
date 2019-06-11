@@ -1,19 +1,10 @@
 package com.example.user.wearemachungers.Classes;
 
 public class Berita {
-    private String id;
     private String judul;
-    private String detail;
-    private String gambar;
+    private String konten;
+    private String img_url;
     private String last_edit;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getJudul() {
         return judul;
@@ -23,20 +14,20 @@ public class Berita {
         this.judul = judul;
     }
 
-    public String getDetail() {
-        return detail;
+    public String getKonten() {
+        return konten;
     }
 
-    public void setDetail(String detail) {
-        this.detail = detail;
+    public void setKonten(String konten) {
+        this.konten = konten;
     }
 
-    public String getGambar() {
-        return gambar;
+    public String getImg_url() {
+        return img_url;
     }
 
-    public void setGambar(String gambar) {
-        this.gambar = gambar;
+    public void setImg_url(String img_url) {
+        this.img_url = img_url;
     }
 
     public String getLast_edit() {
