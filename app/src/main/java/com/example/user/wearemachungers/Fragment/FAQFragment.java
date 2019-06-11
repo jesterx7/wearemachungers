@@ -46,6 +46,9 @@ public class FAQFragment extends Fragment {
         rvListFAQ = view.findViewById(R.id.rvListFAQ);
         progressBar = view.findViewById(R.id.progressbarFAQ);
 
+        isMaxData = false;
+        last_node = "";
+
         getLastKeyFromFirebase();
 
         listFAQ = new ArrayList<>();
@@ -137,7 +140,6 @@ public class FAQFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot data : dataSnapshot.getChildren())
                     last_key = data.child("pertanyaan").getValue().toString();
-                System.out.println("LAST KEY : " + last_key);
             }
 
             @Override

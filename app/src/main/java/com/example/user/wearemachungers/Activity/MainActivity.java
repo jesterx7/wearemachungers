@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_frame, fragment);
-        fragmentTransaction.addToBackStack("tag");
+        fragmentTransaction.addToBackStack("berita");
         fragmentTransaction.commit();
     }
 
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.content_frame, fragment);
-            fragmentTransaction.addToBackStack("tag");
+            fragmentTransaction.addToBackStack("berita");
             fragmentTransaction.commit();
         } else if (id == R.id.nav_newsletter) {
             Fragment fragment = new NewsletterFragment();

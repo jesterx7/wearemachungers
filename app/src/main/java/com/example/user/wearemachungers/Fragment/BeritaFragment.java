@@ -54,6 +54,9 @@ public class BeritaFragment extends Fragment {
         searchBerita = view.findViewById(R.id.searchBerita);
         progressBar = view.findViewById(R.id.progressbarBerita);
 
+        isMaxData = false;
+        last_node = "";
+
         getLastKeyFromFirebase();
 
         listBerita = new ArrayList<>();
@@ -98,7 +101,8 @@ public class BeritaFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                listBeritaAdapter.getFilter().filter(s);
+                if (!TextUtils.isEmpty(last_node))
+                    listBeritaAdapter.getFilter().filter(s);
                 return false;
             }
         });
