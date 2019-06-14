@@ -36,15 +36,18 @@ public class ListNewsletterAdapter extends RecyclerView.Adapter<ListNewsletterAd
     private ArrayList<Newsletter> listNewsletter;
 
     public ListNewsletterAdapter(Context context) {
+        this.listNewsletter = new ArrayList<>();
         this.context = context;
+    }
+
+    public void addAll(ArrayList<Newsletter> newNewsletter) {
+        int initSize = listNewsletter.size();
+        listNewsletter.addAll(newNewsletter);
+        notifyItemRangeChanged(initSize, newNewsletter.size());
     }
 
     public ArrayList<Newsletter> getListNewsletter() {
         return listNewsletter;
-    }
-
-    public void setListNewsletter(ArrayList<Newsletter> listNewsletter) {
-        this.listNewsletter = listNewsletter;
     }
 
     @Override
@@ -55,7 +58,7 @@ public class ListNewsletterAdapter extends RecyclerView.Adapter<ListNewsletterAd
 
     @Override
     public void onBindViewHolder(NewsletterViewHolder holder, final int position) {
-        holder.tvNamaPDF.setText(getListNewsletter().get(position).getNamaPDF());
+        holder.tvNamaPDF.setText(getListNewsletter().get(position).getNama());
         holder.imgDownloadPDF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,7 +66,7 @@ public class ListNewsletterAdapter extends RecyclerView.Adapter<ListNewsletterAd
                     @Override
                     public void run() {
                         try  {
-                            URL url = new URL(getListNewsletter().get(position).getUrl());
+                            URL url = new URL(getListNewsletter().get(position).getPath());
                             HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
                             httpURLConnection.setRequestMethod("GET");
                             httpURLConnection.setDoOutput(true);

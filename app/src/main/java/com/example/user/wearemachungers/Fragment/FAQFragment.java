@@ -29,11 +29,10 @@ import java.util.ArrayList;
 public class FAQFragment extends Fragment {
     private View view;
     private RecyclerView rvListFAQ;
-    private ArrayList<FAQ> listFAQ;
     private ListFAQAdapter listFAQAdapter;
     private ProgressBar progressBar;
 
-    private final int ITEM_LOAD_COUNT = 1;
+    private final int ITEM_LOAD_COUNT = 8;
     private int total_item = 0;
     private int last_visible_item;
     private boolean isLoading = false, isMaxData = false;
@@ -51,7 +50,6 @@ public class FAQFragment extends Fragment {
 
         getLastKeyFromFirebase();
 
-        listFAQ = new ArrayList<>();
         listFAQAdapter = new ListFAQAdapter(view.getContext());
         rvListFAQ.setAdapter(listFAQAdapter);
 
@@ -86,13 +84,13 @@ public class FAQFragment extends Fragment {
             if (TextUtils.isEmpty(last_node)) {
                 query = FirebaseDatabase.getInstance().getReference()
                         .child("faq")
-                        .orderByKey()
+                        .orderByChild("last_edit")
                         .limitToFirst(ITEM_LOAD_COUNT);
             }
             else {
                 query = FirebaseDatabase.getInstance().getReference()
                         .child("faq")
-                        .orderByKey()
+                        .orderByChild("last_edit")
                         .startAt(last_node)
                         .limitToFirst(ITEM_LOAD_COUNT);
             }
@@ -104,7 +102,7 @@ public class FAQFragment extends Fragment {
                         for (DataSnapshot data : dataSnapshot.getChildren()) {
                             newFAQ.add(data.getValue(FAQ.class));
                         }
-                        last_node = newFAQ.get(newFAQ.size() - 1).getPertanyaan();
+                        last_node = newFAQ.get(newFAQ.size() - 1).getLast_edit();
 
                         if (!last_node.equals(last_key) && newFAQ.size() > 1)
                             newFAQ.remove(newFAQ.size() - 1);
@@ -132,14 +130,14 @@ public class FAQFragment extends Fragment {
     private void getLastKeyFromFirebase() {
         final Query query = FirebaseDatabase.getInstance().getReference()
                 .child("faq")
-                .orderByKey()
+                .orderByChild("last_edit")
                 .limitToLast(1);
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot data : dataSnapshot.getChildren())
-                    last_key = data.child("pertanyaan").getValue().toString();
+                    last_key = data.child("last_edit").getValue().toString();
             }
 
             @Override

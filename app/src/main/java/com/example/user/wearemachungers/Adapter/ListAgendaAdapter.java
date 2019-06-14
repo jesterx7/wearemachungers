@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.user.wearemachungers.Classes.Agenda;
+import com.example.user.wearemachungers.Classes.Newsletter;
 import com.example.user.wearemachungers.R;
 
 import java.lang.reflect.Type;
@@ -24,15 +25,18 @@ public class ListAgendaAdapter extends RecyclerView.Adapter<ListAgendaAdapter.Ag
     private ArrayList<Agenda> listAgenda;
 
     public ListAgendaAdapter(Context context) {
+        this.listAgenda = new ArrayList<>();
         this.context = context;
+    }
+
+    public void addAll(ArrayList<Agenda> newAgenda) {
+        int initSize = listAgenda.size();
+        listAgenda.addAll(newAgenda);
+        notifyItemRangeChanged(initSize, newAgenda.size());
     }
 
     public ArrayList<Agenda> getListAgenda() {
         return listAgenda;
-    }
-
-    public void setListAgenda(ArrayList<Agenda> listAgenda) {
-        this.listAgenda = listAgenda;
     }
 
     @Override
@@ -44,10 +48,10 @@ public class ListAgendaAdapter extends RecyclerView.Adapter<ListAgendaAdapter.Ag
     @Override
     public void onBindViewHolder(final AgendaViewHolder holder, int position) {
         Glide.with(context)
-                .load(getListAgenda().get(position).getCover())
+                .load(getListAgenda().get(position).getImg_url())
                 .crossFade()
                 .into(holder.imgCoverAgenda);
-        holder.tvDetailAgenda.setText(getListAgenda().get(position).getDetail());
+        holder.tvDetailAgenda.setText(getListAgenda().get(position).getKonten());
         holder.imgDetailAgenda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,7 +123,7 @@ public class ListAgendaAdapter extends RecyclerView.Adapter<ListAgendaAdapter.Ag
             }
         });
         holder.tvJudulAgenda.setText(getListAgenda().get(position).getJudul());
-        holder.tvTanggalAgenda.setText(getListAgenda().get(position).getTglMulai() + " - " + getListAgenda().get(position).getTglSelesai());
+        holder.tvTanggalAgenda.setText(getListAgenda().get(position).getTgl_mulai() + " - " + getListAgenda().get(position).getTgl_selesai());
     }
 
     @Override

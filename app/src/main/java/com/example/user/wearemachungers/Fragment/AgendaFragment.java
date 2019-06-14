@@ -2,59 +2,131 @@ package com.example.user.wearemachungers.Fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.user.wearemachungers.Classes.Agenda;
 import com.example.user.wearemachungers.Adapter.ListAgendaAdapter;
 import com.example.user.wearemachungers.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class AgendaFragment extends Fragment {
     private View view;
     private RecyclerView rvListAgenda;
-    private ArrayList<Agenda> listAgenda;
+    private ListAgendaAdapter listAgendaAdapter;
+    private ProgressBar progressBar;
+
+    private final int ITEM_LOAD_COUNT = 8;
+    private int total_item = 0;
+    private int last_visible_item;
+    private boolean isLoading = false, isMaxData = false;
+    private String last_node = "", last_key = "";
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.list_agenda, container, false);
         rvListAgenda = view.findViewById(R.id.rvListAgenda);
-        listAgenda = new ArrayList<>();
+        progressBar = view.findViewById(R.id.progressbarAgenda);
 
-        Agenda agenda1 = new Agenda();
-        agenda1.setCover("http://cdn2.tstatic.net/bali/foto/bank/images/ra-kartini_20180421_110050.jpg");
-        agenda1.setId("1");
-        agenda1.setJudul("Peringatan Hari Kartini");
-        agenda1.setLastEdit("21 April 2019");
-        agenda1.setTglMulai("21");
-        agenda1.setTglSelesai("21 April 2019");
-        agenda1.setDetail("Para mahasiswa diharapkan memakai baju batik");
+        isMaxData = false;
+        last_node = "";
 
-        Agenda agenda2 = new Agenda();
-        agenda2.setCover("https://cosmopolitanfm.com/wp-content/uploads/2016/12/perayaan-unik-hari-raya-natal-di-dunia.jpg");
-        agenda2.setId("2");
-        agenda2.setJudul("Libur Hari Natal");
-        agenda2.setLastEdit("21 April 2019");
-        agenda2.setTglMulai("24");
-        agenda2.setTglSelesai("25 Desember 2019");
-        agenda2.setDetail("Libur pada tanggal merah untuk memperingati hari natal");
+        getLastKeyFromFirebase();
 
-        listAgenda.add(agenda1);
-        listAgenda.add(agenda2);
-
-        rvListAgenda.addItemDecoration(new DividerItemDecoration(rvListAgenda.getContext(), DividerItemDecoration.VERTICAL));
-        rvListAgenda.setLayoutManager(new LinearLayoutManager(getActivity()));
-        ListAgendaAdapter listAgendaAdapter = new ListAgendaAdapter(view.getContext());
-        listAgendaAdapter.setListAgenda(listAgenda);
+        listAgendaAdapter = new ListAgendaAdapter(view.getContext());
         rvListAgenda.setAdapter(listAgendaAdapter);
 
+        getAgenda();
+
+        rvListAgenda.addItemDecoration(new DividerItemDecoration(rvListAgenda.getContext(), DividerItemDecoration.VERTICAL));
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext());
+        rvListAgenda.setLayoutManager(linearLayoutManager);
+
         return view;
+    }
+
+    private void getAgenda() {
+        if (!isMaxData) {
+            Query query;
+            if (TextUtils.isEmpty(last_node)) {
+                query = FirebaseDatabase.getInstance().getReference()
+                        .child("agenda")
+                        .orderByChild("last_edit")
+                        .limitToFirst(ITEM_LOAD_COUNT);
+            }
+            else {
+                query = FirebaseDatabase.getInstance().getReference()
+                        .child("agenda")
+                        .orderByChild("last_edit")
+                        .startAt(last_node)
+                        .limitToFirst(ITEM_LOAD_COUNT);
+            }
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.hasChildren()) {
+                        ArrayList<Agenda> newAgenda = new ArrayList();
+                        for (DataSnapshot data : dataSnapshot.getChildren()) {
+                            newAgenda.add(data.getValue(Agenda.class));
+                        }
+                        last_node = newAgenda.get(newAgenda.size() - 1).getLast_edit();
+
+                        if (!last_node.equals(last_key) && newAgenda.size() > 1)
+                            newAgenda.remove(newAgenda.size() - 1);
+                        else
+                            last_node = "end";
+
+                        listAgendaAdapter.addAll(newAgenda);
+                        isLoading = false;
+                        progressBar.setVisibility(View.GONE);
+                    }
+                    else {
+                        isLoading = false;
+                        isMaxData = true;
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    isLoading = false;
+                }
+            });
+        }
+    }
+
+    private void getLastKeyFromFirebase() {
+        final Query query = FirebaseDatabase.getInstance().getReference()
+                .child("faq")
+                .orderByChild("last_edit")
+                .limitToLast(1);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot data : dataSnapshot.getChildren())
+                    last_key = data.child("last_edit").getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(view.getContext(), "Cannot get last key..", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

@@ -3,7 +3,7 @@ package com.example.user.wearemachungers.Classes;
 public class FAQ {
     private String pertanyaan;
     private String jawaban;
-    private String lastEdit;
+    private String last_edit;
 
     public String getPertanyaan() {
         return pertanyaan;
@@ -21,11 +21,11 @@ public class FAQ {
         this.jawaban = jawabanFAQ;
     }
 
-    public String getLastEdit() {
-        return lastEdit;
+    public String getLast_edit() {
+        return last_edit;
     }
 
-    public void setLastEdit(String lastEdit) {
-        this.lastEdit = lastEdit;
+    public void setLast_edit(String last_edit) {
+        this.last_edit = last_edit;
     }
 }

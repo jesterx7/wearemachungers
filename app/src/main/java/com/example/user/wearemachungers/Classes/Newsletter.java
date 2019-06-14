@@ -1,49 +1,31 @@
 package com.example.user.wearemachungers.Classes;
 
 public class Newsletter {
-    private String id;
-    private String namaPDF;
-    private String url;
-    private String email;
-    private String lastEdit;
+    private String nama;
+    private String path;
+    private String last_edit;
 
-    public String getId() {
-        return id;
+    public String getNama() {
+        return nama;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
-    public String getNamaPDF() {
-        return namaPDF;
+    public String getPath() {
+        return path;
     }
 
-    public void setNamaPDF(String namaPDF) {
-        this.namaPDF = namaPDF;
+    public void setPath(String path) {
+        this.path = path;
     }
 
-    public String getUrl() {
-        return url;
+    public String getLast_edit() {
+        return last_edit;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getLastEdit() {
-        return lastEdit;
-    }
-
-    public void setLastEdit(String lastEdit) {
-        this.lastEdit = lastEdit;
+    public void setLast_edit(String last_edit) {
+        this.last_edit = last_edit;
     }
 }

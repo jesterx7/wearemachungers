@@ -26,10 +26,10 @@ public class ListFAQAdapter extends RecyclerView.Adapter<ListFAQAdapter.FAQViewH
         this.context = context;
     }
 
-    public void addAll(ArrayList<FAQ> newBerita) {
+    public void addAll(ArrayList<FAQ> newFAQ) {
         int initSize = listFAQ.size();
-        listFAQ.addAll(newBerita);
-        notifyItemRangeChanged(initSize, newBerita.size());
+        listFAQ.addAll(newFAQ);
+        notifyItemRangeChanged(initSize, newFAQ.size());
     }
 
     public ArrayList<FAQ> getListFAQ() {
