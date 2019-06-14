@@ -116,13 +116,13 @@ public class BeritaFragment extends Fragment {
             if (TextUtils.isEmpty(last_node)) {
                 query = FirebaseDatabase.getInstance().getReference()
                         .child("berita")
-                        .orderByKey()
+                        .orderByChild("last_edit")
                         .limitToFirst(ITEM_LOAD_COUNT);
             }
             else {
                 query = FirebaseDatabase.getInstance().getReference()
                         .child("berita")
-                        .orderByKey()
+                        .orderByChild("last_edit")
                         .startAt(last_node)
                         .limitToFirst(ITEM_LOAD_COUNT);
             }
@@ -134,7 +134,7 @@ public class BeritaFragment extends Fragment {
                         for (DataSnapshot data : dataSnapshot.getChildren()) {
                             newBerita.add(data.getValue(Berita.class));
                         }
-                        last_node = newBerita.get(newBerita.size() - 1).getJudul();
+                        last_node = newBerita.get(newBerita.size() - 1).getLast_edit();
 
                         if (!last_node.equals(last_key) && newBerita.size() > 1)
                             newBerita.remove(newBerita.size() - 1);
@@ -162,14 +162,14 @@ public class BeritaFragment extends Fragment {
     private void getLastKeyFromFirebase() {
         final Query query = FirebaseDatabase.getInstance().getReference()
                 .child("berita")
-                .orderByKey()
+                .orderByChild("last_edit")
                 .limitToLast(1);
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot data : dataSnapshot.getChildren())
-                    last_key = data.child("judul").getValue().toString();
+                    last_key = data.child("last_edit").getValue().toString();
             }
 
             @Override
