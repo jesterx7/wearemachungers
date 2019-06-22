@@ -35,7 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
-            <com.example.user.wearemachungers.CustomFonts.LightRobotoTextView
+            <com.machungapp.user.wearemachungers.CustomFonts.LightRobotoTextView
                 android:id="@+id/tvDetailAgenda"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

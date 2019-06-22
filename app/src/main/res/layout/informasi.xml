@@ -20,14 +20,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_margin="10dp">
-                <com.example.user.wearemachungers.CustomFonts.OpenSansBoldTextView
+                <com.machungapp.user.wearemachungers.CustomFonts.OpenSansBoldTextView
                     android:id="@+id/tvSejarahMachung"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Sejarah Ma Chung"
                     android:textStyle="bold"
                     android:padding="5dp"/>
-                <com.example.user.wearemachungers.CustomFonts.OpenSansBoldTextView
+                <com.machungapp.user.wearemachungers.CustomFonts.OpenSansBoldTextView
                     android:id="@+id/tvVisiMisi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:background="@drawable/border">
-                    <com.example.user.wearemachungers.CustomFonts.OpenSansBoldTextView
+                    <com.machungapp.user.wearemachungers.CustomFonts.OpenSansBoldTextView
                         android:id="@+id/tvInfoFakultas"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:layout_marginTop="5dp">
-                        <com.example.user.wearemachungers.CustomFonts.LightRobotoTextView
+                        <com.machungapp.user.wearemachungers.CustomFonts.LightRobotoTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Sains dan Teknologi"
@@ -83,7 +83,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:layout_marginTop="5dp">
-                        <com.example.user.wearemachungers.CustomFonts.LightRobotoTextView
+                        <com.machungapp.user.wearemachungers.CustomFonts.LightRobotoTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Ekonomi dan Bisnis"
@@ -99,7 +99,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:layout_marginTop="5dp">
-                        <com.example.user.wearemachungers.CustomFonts.LightRobotoTextView
+                        <com.machungapp.user.wearemachungers.CustomFonts.LightRobotoTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Ilmu dan Bahasa"

@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:276693522271:android:27965770e6cccba2",
+        "mobilesdk_app_id": "1:276693522271:android:9be6615884f0d190",
         "android_client_info": {
-          "package_name": "com.example.user.wearemachungers"
+          "package_name": "com.machungapp.user.wearemachungers"
         }
       },
       "oauth_client": [

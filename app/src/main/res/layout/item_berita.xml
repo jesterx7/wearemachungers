@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:orientation="vertical">
-                <com.example.user.wearemachungers.CustomFonts.LightRobotoTextView
+                <com.machungapp.user.wearemachungers.CustomFonts.LightRobotoTextView
                     android:id="@+id/tvKontenBerita"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
