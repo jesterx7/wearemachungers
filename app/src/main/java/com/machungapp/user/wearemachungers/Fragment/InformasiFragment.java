@@ -2,6 +2,8 @@ package com.machungapp.user.wearemachungers.Fragment;
 
 import android.animation.Animator;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.machungapp.user.wearemachungers.R;
@@ -17,6 +20,7 @@ public class InformasiFragment extends Fragment {
     private View view;
     private ImageView imgCoverInformasi,imgExpandFaculty, imgDetailFST, imgDetailFEB, imgDetailFIB;
     private LinearLayout llListFakultas;
+    private TextView tvVisiMisi, tvSejarahMachung;
 
     @Nullable
     @Override
@@ -29,6 +33,8 @@ public class InformasiFragment extends Fragment {
         imgDetailFEB = view.findViewById(R.id.imgDetailFEB);
         imgDetailFIB = view.findViewById(R.id.imgDetailFIB);
         llListFakultas = view.findViewById(R.id.llListFakultas);
+        tvVisiMisi = view.findViewById(R.id.tvVisiMisi);
+        tvSejarahMachung = view.findViewById(R.id.tvSejarahMachung);
 
         imgExpandFaculty.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +83,30 @@ public class InformasiFragment extends Fragment {
                 .load("https://hoteldekatkampus.com/wp-content/uploads/2014/10/universitas-ma-chung.jpg")
                 .crossFade()
                 .into(imgCoverInformasi);
+
+        tvVisiMisi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new VisiMisiFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.addToBackStack("visimisi");
+                fragmentTransaction.commit();
+            }
+        });
+
+        tvSejarahMachung.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new SejarahFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.addToBackStack("sejarah");
+                fragmentTransaction.commit();
+            }
+        });
 
         return view;
     }
