@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp">
+
+    <com.machungapp.user.wearemachungers.CustomFonts.OpenSansBoldTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Finance"
+        android:textSize="30dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <com.machungapp.user.wearemachungers.CustomFonts.LightRobotoTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GPA"
+            android:textSize="15dp"
+            android:layout_weight="1"/>
+
+        <com.machungapp.user.wearemachungers.CustomFonts.LightRobotoTextView
+            android:id="@+id/tvIPK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="3.60"
+            android:layout_weight="2"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <com.machungapp.user.wearemachungers.CustomFonts.LightRobotoTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SKS / Finance SKS"
+            android:textSize="15dp"
+            android:layout_weight="1"/>
+
+        <com.machungapp.user.wearemachungers.CustomFonts.LightRobotoTextView
+            android:id="@+id/tvSKS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="139 / 144"
+            android:layout_weight="2"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <com.machungapp.user.wearemachungers.CustomFonts.LightRobotoTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Financial Responsibility This Month"
+            android:textSize="15dp"
+            android:layout_weight="1"/>
+
+        <com.machungapp.user.wearemachungers.CustomFonts.LightRobotoTextView
+            android:id="@+id/tvFinancialResponsibility"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="Rp. 2.300.000, 00"
+            android:layout_weight="2"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <com.machungapp.user.wearemachungers.CustomFonts.LightRobotoTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Payment This Month"
+            android:textSize="15dp"
+            android:layout_weight="1"/>
+
+        <com.machungapp.user.wearemachungers.CustomFonts.LightRobotoTextView
+            android:id="@+id/tvPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="Rp. 1.000.000, 00"
+            android:layout_weight="2"/>
+    </LinearLayout>
+
+</LinearLayout>

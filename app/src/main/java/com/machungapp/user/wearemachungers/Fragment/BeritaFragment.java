@@ -31,7 +31,6 @@ public class BeritaFragment extends Fragment {
     private View view;
     private RecyclerView rvListBerita;
     private SearchView searchBerita;
-    private ArrayList<Berita> listBerita;
     private ListBeritaAdapter listBeritaAdapter;
     private ProgressBar progressBar;
 
@@ -55,7 +54,6 @@ public class BeritaFragment extends Fragment {
 
         getLastKeyFromFirebase();
 
-        listBerita = new ArrayList<>();
         listBeritaAdapter = new ListBeritaAdapter(view.getContext());
         rvListBerita.setAdapter(listBeritaAdapter);
 

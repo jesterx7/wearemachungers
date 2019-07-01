@@ -26,7 +26,7 @@ public class SignIn extends AppCompatActivity {
     private ImageView imgBackground;
     private EditText edtUsername, edtPassword;
     private Button btnLogin;
-    private String username = "", password="";
+    private String username = "", password="", name="";
     private Boolean logged = false;
 
     @Override
@@ -100,6 +100,10 @@ public class SignIn extends AppCompatActivity {
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                     if (data.child("nim").getValue().toString().equals(username) && data.child("password").getValue().toString().equals(password)) {
                         logged = true;
+                        name = data.child("nama").getValue().toString();
+                        SaveSharedPreference.setUserName(getApplicationContext(), name);
+                        SaveSharedPreference.setNim(getApplicationContext(), username);
+                        SaveSharedPreference.setPassword(getApplicationContext(), password);
                     }
                 }
                 if (logged) {

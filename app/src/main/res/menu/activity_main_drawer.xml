@@ -3,39 +3,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_berita"
-            android:icon="@drawable/ic_library_books"
-            android:title="Berita" />
-        <item
-            android:id="@+id/nav_newsletter"
-            android:icon="@drawable/ic_picture_as_pdf"
-            android:title="Newsletter" />
-        <item
-            android:id="@+id/nav_agenda"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Agenda" />
-        <item
-            android:id="@+id/nav_profil"
-            android:icon="@drawable/ic_info"
-            android:title="About Ma Chung" />
-        <item
-            android:id="@+id/nav_faq"
-            android:icon="@drawable/ic_question_answer"
-            android:title="FAQ" />
-        <item
-            android:id="@+id/nav_life_at"
-            android:icon="@drawable/ic_view_carousel"
-            android:title="Life at Machung" />
-        <item
-            android:id="@+id/nav_contact"
-            android:icon="@drawable/ic_contact_phone"
-            android:title="Contact Us" />
-        <item
-            android:id="@+id/nav_sign"
-            android:icon="@drawable/ic_person_pin"
-            android:title="Sign In" />
-    </group>
+    <item android:title="General Information">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_berita"
+                    android:icon="@drawable/ic_library_books"
+                    android:title="Berita" />
+                <item
+                    android:id="@+id/nav_newsletter"
+                    android:icon="@drawable/ic_picture_as_pdf"
+                    android:title="Newsletter" />
+                <item
+                    android:id="@+id/nav_agenda"
+                    android:icon="@drawable/ic_menu_slideshow"
+                    android:title="Agenda" />
+                <item
+                    android:id="@+id/nav_profil"
+                    android:icon="@drawable/ic_info"
+                    android:title="About Ma Chung" />
+                <item
+                    android:id="@+id/nav_faq"
+                    android:icon="@drawable/ic_question_answer"
+                    android:title="FAQ" />
+                <item
+                    android:id="@+id/nav_life_at"
+                    android:icon="@drawable/ic_view_carousel"
+                    android:title="Life at Machung" />
+                <item
+                    android:id="@+id/nav_contact"
+                    android:icon="@drawable/ic_contact_phone"
+                    android:title="Contact Us" />
+                <item
+                    android:id="@+id/nav_sign"
+                    android:icon="@drawable/ic_person_pin"
+                    android:title="Sign In" />
+            </group>
+        </menu>
+    </item>
 
 </menu>

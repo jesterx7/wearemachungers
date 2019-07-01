@@ -108,6 +108,51 @@ public class InformasiFragment extends Fragment {
             }
         });
 
+        imgDetailFST.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new FacultyFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("facultyID", "-LdvbgruOQnhY-yhvA3e");
+                fragment.setArguments(bundle);
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.addToBackStack("faculty");
+                fragmentTransaction.commit();
+            }
+        });
+
+        imgDetailFEB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new FacultyFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("facultyID", "-LeMDT4NatgbVPAvdxRS");
+                fragment.setArguments(bundle);
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.addToBackStack("faculty");
+                fragmentTransaction.commit();
+            }
+        });
+
+        imgDetailFIB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new FacultyFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("facultyID", "-LeMDZsrLCDWgZg5eOKO");
+                fragment.setArguments(bundle);
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.addToBackStack("faculty");
+                fragmentTransaction.commit();
+            }
+        });
+
         return view;
     }
 }

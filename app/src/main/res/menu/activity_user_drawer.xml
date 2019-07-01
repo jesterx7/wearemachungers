@@ -1,53 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_berita_user"
-            android:icon="@drawable/ic_library_books"
-            android:title="Berita" />
-        <item
-            android:id="@+id/nav_newsletter_user"
-            android:icon="@drawable/ic_picture_as_pdf"
-            android:title="Newsletter" />
-        <item
-            android:id="@+id/nav_agenda_user"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Agenda" />
-        <item
-            android:id="@+id/nav_profil_user"
-            android:icon="@drawable/ic_info"
-            android:title="About Ma Chung" />
-        <item
-            android:id="@+id/nav_faq_user"
-            android:icon="@drawable/ic_question_answer"
-            android:title="FAQ" />
-        <item
-            android:id="@+id/nav_life_at_user"
-            android:icon="@drawable/ic_view_carousel"
-            android:title="Life at Machung" />
-        <item
-            android:id="@+id/nav_contact_user"
-            android:icon="@drawable/ic_contact_phone"
-            android:title="Contact Us" />
-        <item
-            android:id="@+id/nav_academic"
-            android:icon="@drawable/ic_school"
-            android:title="Academic Calendar" />
-        <item
-            android:id="@+id/nav_finance"
-            android:icon="@drawable/ic_monetization"
-            android:title="Finance" />
-        <item
-            android:id="@+id/nav_student_information"
-            android:icon="@drawable/ic_group"
-            android:title="Student Affairs" />
-        <item
-            android:id="@+id/nav_sign_out"
-            android:icon="@drawable/ic_power_settings"
-            android:title="Sign Out" />
-    </group>
-
+    <item android:title="General Information">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_berita_user"
+                    android:icon="@drawable/ic_library_books"
+                    android:title="Berita" />
+                <item
+                    android:id="@+id/nav_newsletter_user"
+                    android:icon="@drawable/ic_picture_as_pdf"
+                    android:title="Newsletter" />
+                <item
+                    android:id="@+id/nav_agenda_user"
+                    android:icon="@drawable/ic_menu_slideshow"
+                    android:title="Agenda" />
+                <item
+                    android:id="@+id/nav_profil_user"
+                    android:icon="@drawable/ic_info"
+                    android:title="About Ma Chung" />
+                <item
+                    android:id="@+id/nav_faq_user"
+                    android:icon="@drawable/ic_question_answer"
+                    android:title="FAQ" />
+                <item
+                    android:id="@+id/nav_life_at_user"
+                    android:icon="@drawable/ic_view_carousel"
+                    android:title="Life at Machung" />
+                <item
+                    android:id="@+id/nav_contact_user"
+                    android:icon="@drawable/ic_contact_phone"
+                    android:title="Contact Us" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="Academic Information">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_academic"
+                    android:icon="@drawable/ic_school"
+                    android:title="Academic Calendar" />
+                <item
+                    android:id="@+id/nav_finance"
+                    android:icon="@drawable/ic_monetization"
+                    android:title="Finance" />
+                <item
+                    android:id="@+id/nav_student_information"
+                    android:icon="@drawable/ic_group"
+                    android:title="Student Affairs" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="Settings">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_profile"
+                    android:icon="@drawable/ic_power_settings"
+                    android:title="Settings" />
+                <item
+                    android:id="@+id/nav_sign_out"
+                    android:icon="@drawable/ic_power_settings"
+                    android:title="Sign Out" />
+            </group>
+        </menu>
+    </item>
 </menu>
