@@ -4,11 +4,11 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,9 +19,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.machungapp.user.wearemachungers.Fragment.AgendaFragment;
 import com.machungapp.user.wearemachungers.Fragment.BeritaFragment;
 import com.machungapp.user.wearemachungers.Fragment.FAQFragment;
@@ -30,7 +40,10 @@ import com.machungapp.user.wearemachungers.Fragment.KeuanganFragment;
 import com.machungapp.user.wearemachungers.Fragment.KontakFragment;
 import com.machungapp.user.wearemachungers.Fragment.LifeAtMachungFragment;
 import com.machungapp.user.wearemachungers.Fragment.NewsletterFragment;
+import com.machungapp.user.wearemachungers.Fragment.SettingsFragment;
 import com.machungapp.user.wearemachungers.R;
+import com.machungapp.user.wearemachungers.Services.FirebaseInstanceServices;
+import com.machungapp.user.wearemachungers.Services.SaveSharedPreference;
 
 public class UserActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -64,6 +77,33 @@ public class UserActivity extends AppCompatActivity
                             fragmentTransactionContact.addToBackStack("tag");
                             fragmentTransactionContact.commit();
                             return true;
+                        case R.id.nav_bot_sign:
+                            final Query query = FirebaseDatabase.getInstance().getReference()
+                                    .child("mahasiswa")
+                                    .orderByKey();
+                            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    for (DataSnapshot data : dataSnapshot.getChildren()) {
+                                        if (data.child("nim").getValue().toString().equals(SaveSharedPreference.getNim(getApplicationContext()))) {
+                                            data.getRef().child("login").setValue("false");
+                                            data.getRef().child("fcm_token").setValue("");
+                                            SaveSharedPreference.setUserName(getApplicationContext(), "");
+                                            SaveSharedPreference.setPassword(getApplicationContext(), "");
+                                            SaveSharedPreference.setNim(getApplicationContext(), "");
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                            Intent intent = new Intent(UserActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            Toast.makeText(getApplicationContext(), "Log out Successfull", Toast.LENGTH_SHORT).show();
+                            return true;
                     }
                     return false;
                 }
@@ -91,7 +131,22 @@ public class UserActivity extends AppCompatActivity
         email.setText(SaveSharedPreference.getNim(getApplicationContext()) + "@student.machung.ac.id");
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_user);
+        bottomNavigationView.getMenu().findItem(R.id.nav_bot_sign).setTitle("Sign Out");
+        bottomNavigationView.getMenu().findItem(R.id.nav_bot_sign).setIcon(R.drawable.ic_power_settings);
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
+
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("error", "getInstanceId failed", task.getException());
+                            return;
+                        }
+
+                        String token = task.getResult().getToken();
+                    }
+                });
 
         Fragment fragment = new BeritaFragment();
         FragmentManager fragmentManager = getFragmentManager();
@@ -162,6 +217,9 @@ public class UserActivity extends AppCompatActivity
             fragmentTransaction.commit();
         } else if (id == R.id.nav_profil_user) {
             Fragment fragment = new InformasiFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("frame", "user");
+            fragment.setArguments(bundle);
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.content_frame_user, fragment);
@@ -189,7 +247,8 @@ public class UserActivity extends AppCompatActivity
             fragmentTransaction.addToBackStack("tag");
             fragmentTransaction.commit();
         } else if (id == R.id.nav_academic) {
-
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://mcis-pmb.machung.ac.id/"));
+            startActivity(browserIntent);
         } else if (id == R.id.nav_finance) {
             Fragment fragment = new KeuanganFragment();
             FragmentManager fragmentManager = getFragmentManager();
@@ -198,13 +257,54 @@ public class UserActivity extends AppCompatActivity
             fragmentTransaction.addToBackStack("tag");
             fragmentTransaction.commit();
         } else if (id == R.id.nav_student_information) {
-
+            Toast.makeText(getApplicationContext(), "This Content is Not Available Yet", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_profile) {
+            Fragment fragment = new SettingsFragment();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.content_frame_user, fragment);
+            fragmentTransaction.addToBackStack("tag");
+            fragmentTransaction.commit();
         } else if (id == R.id.nav_sign_out) {
-            SaveSharedPreference.setUserName(getApplicationContext(), "");
-            SaveSharedPreference.setPassword(getApplicationContext(), "");
-            SaveSharedPreference.setNim(getApplicationContext(), "");
+            final Query query = FirebaseDatabase.getInstance().getReference()
+                    .child("mahasiswa")
+                    .orderByKey();
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot data : dataSnapshot.getChildren()) {
+                        if (data.child("nim").getValue().toString().equals(SaveSharedPreference.getNim(getApplicationContext()))) {
+                            data.getRef().child("login").setValue("false");
+                            final String prodi_topic = data.child("prodi").getValue().toString();
+                            FirebaseMessaging.getInstance().unsubscribeFromTopic(data.child("prodi").getValue().toString());
+                            Query queryFaculty = FirebaseDatabase.getInstance().getReference().child("prodi").child(prodi_topic);
+                            queryFaculty.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    FirebaseMessaging.getInstance().unsubscribeFromTopic(dataSnapshot.child("fakultas").getValue().toString());
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                            data.getRef().child("fcm_token").setValue("");
+                            SaveSharedPreference.setUserName(getApplicationContext(), "");
+                            SaveSharedPreference.setPassword(getApplicationContext(), "");
+                            SaveSharedPreference.setNim(getApplicationContext(), "");
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
             Intent intent = new Intent(UserActivity.this, MainActivity.class);
             startActivity(intent);
+            Toast.makeText(getApplicationContext(), "Log out Successfull", Toast.LENGTH_SHORT).show();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

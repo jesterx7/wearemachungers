@@ -41,7 +41,7 @@
                 <item
                     android:id="@+id/nav_academic"
                     android:icon="@drawable/ic_school"
-                    android:title="Academic Calendar" />
+                    android:title="Online Registration" />
                 <item
                     android:id="@+id/nav_finance"
                     android:icon="@drawable/ic_monetization"
@@ -49,7 +49,7 @@
                 <item
                     android:id="@+id/nav_student_information"
                     android:icon="@drawable/ic_group"
-                    android:title="Student Affairs" />
+                    android:title="Student Information" />
             </group>
         </menu>
     </item>
@@ -58,7 +58,7 @@
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_profile"
-                    android:icon="@drawable/ic_power_settings"
+                    android:icon="@drawable/ic_settings"
                     android:title="Settings" />
                 <item
                     android:id="@+id/nav_sign_out"

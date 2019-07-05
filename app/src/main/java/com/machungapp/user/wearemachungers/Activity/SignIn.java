@@ -12,12 +12,18 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.machungapp.user.wearemachungers.R;
+import com.machungapp.user.wearemachungers.Services.SaveSharedPreference;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -97,13 +103,41 @@ public class SignIn extends AppCompatActivity {
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                for (final DataSnapshot data : dataSnapshot.getChildren()) {
                     if (data.child("nim").getValue().toString().equals(username) && data.child("password").getValue().toString().equals(password)) {
-                        logged = true;
-                        name = data.child("nama").getValue().toString();
-                        SaveSharedPreference.setUserName(getApplicationContext(), name);
-                        SaveSharedPreference.setNim(getApplicationContext(), username);
-                        SaveSharedPreference.setPassword(getApplicationContext(), password);
+                        if (data.child("login").getValue().toString().equals("false")) {
+                            logged = true;
+                            name = data.child("nama").getValue().toString();
+                            data.getRef().child("login").setValue("true");
+                            FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                                    if (!task.isSuccessful()) {
+                                        Toast.makeText(getApplicationContext(), "Failed to Recieve ID", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    data.getRef().child("fcm_token").setValue(task.getResult().getToken());
+                                }
+                            });
+                            FirebaseMessaging.getInstance().subscribeToTopic(data.child("prodi").getValue().toString());
+                            Query queryFaculty = FirebaseDatabase.getInstance().getReference().child("prodi").child(data.child("prodi").getValue().toString());
+                            queryFaculty.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    FirebaseMessaging.getInstance().subscribeToTopic(dataSnapshot.child("fakultas").getValue().toString());
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                            SaveSharedPreference.setUserName(getApplicationContext(), name);
+                            SaveSharedPreference.setNim(getApplicationContext(), username);
+                            SaveSharedPreference.setPassword(getApplicationContext(), password);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "This User is Already Signed to Another Device", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
                 if (logged) {

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.machungapp.user.wearemachungers.R;
+import com.machungapp.user.wearemachungers.Services.SaveSharedPreference;
 
 public class SplashActivity extends AppCompatActivity {
     private TextView tvInfoStatus;

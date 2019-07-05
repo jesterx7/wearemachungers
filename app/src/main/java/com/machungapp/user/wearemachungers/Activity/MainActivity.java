@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -56,6 +57,10 @@ public class MainActivity extends AppCompatActivity
                             fragmentTransactionContact.replace(R.id.content_frame, fragmentContact);
                             fragmentTransactionContact.addToBackStack("tag");
                             fragmentTransactionContact.commit();
+                            return true;
+                        case R.id.nav_bot_sign:
+                            Intent intent = new Intent(MainActivity.this, SignIn.class);
+                            startActivity(intent);
                             return true;
                     }
                     return false;
@@ -116,7 +121,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_refresh) {
             return true;
         }
 
@@ -152,6 +157,9 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
         } else if (id == R.id.nav_profil) {
             Fragment fragment = new InformasiFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("frame", "general");
+            fragment.setArguments(bundle);
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.content_frame, fragment);
@@ -171,6 +179,9 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.content_frame, fragment);
             fragmentTransaction.addToBackStack("tag");
             fragmentTransaction.commit();
+        } else if (id == R.id.nav_register) {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://mcis-pmb.machung.ac.id/"));
+            startActivity(browserIntent);
         } else if (id == R.id.nav_sign) {
             Intent intent = new Intent(MainActivity.this, SignIn.class);
             startActivity(intent);

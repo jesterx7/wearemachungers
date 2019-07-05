@@ -1,4 +1,4 @@
-package com.machungapp.user.wearemachungers.Activity;
+package com.machungapp.user.wearemachungers.Services;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -35,6 +35,10 @@
                     android:icon="@drawable/ic_contact_phone"
                     android:title="Contact Us" />
                 <item
+                    android:id="@+id/nav_register"
+                    android:icon="@drawable/ic_school"
+                    android:title="Online Registration"/>
+                <item
                     android:id="@+id/nav_sign"
                     android:icon="@drawable/ic_person_pin"
                     android:title="Sign In" />

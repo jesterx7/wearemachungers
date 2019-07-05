@@ -16,4 +16,9 @@
         android:icon="@drawable/ic_contact_phone"
         android:title="Contact" />
 
+    <item
+        android:id="@+id/nav_bot_sign"
+        android:icon="@drawable/ic_person_pin"
+        android:title="Sign In" />
+
 </menu>

@@ -6,8 +6,8 @@ android {
         applicationId "com.machungapp.user.wearemachungers"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 2
-        versionName "2"
+        versionCode 3
+        versionName "3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -30,6 +30,7 @@ dependencies {
     implementation 'com.github.bluejamesbond:textjustify-android:2.1.6'
     implementation 'com.google.firebase:firebase-core:16.0.6'
     implementation 'com.google.firebase:firebase-database:16.0.4'
+    implementation 'com.google.firebase:firebase-messaging:17.5.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

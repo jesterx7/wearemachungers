@@ -21,6 +21,7 @@ public class InformasiFragment extends Fragment {
     private ImageView imgCoverInformasi,imgExpandFaculty, imgDetailFST, imgDetailFEB, imgDetailFIB;
     private LinearLayout llListFakultas;
     private TextView tvVisiMisi, tvSejarahMachung;
+    private int frame;
 
     @Nullable
     @Override
@@ -35,6 +36,14 @@ public class InformasiFragment extends Fragment {
         llListFakultas = view.findViewById(R.id.llListFakultas);
         tvVisiMisi = view.findViewById(R.id.tvVisiMisi);
         tvSejarahMachung = view.findViewById(R.id.tvSejarahMachung);
+
+        String activity = getArguments().getString("frame");
+        if (activity.equals("general"))
+            frame = R.id.content_frame;
+        else
+            frame = R.id.content_frame_user;
+
+
 
         imgExpandFaculty.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +99,7 @@ public class InformasiFragment extends Fragment {
                 Fragment fragment = new VisiMisiFragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.replace(frame, fragment);
                 fragmentTransaction.addToBackStack("visimisi");
                 fragmentTransaction.commit();
             }
@@ -102,7 +111,7 @@ public class InformasiFragment extends Fragment {
                 Fragment fragment = new SejarahFragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.replace(frame, fragment);
                 fragmentTransaction.addToBackStack("sejarah");
                 fragmentTransaction.commit();
             }
@@ -117,7 +126,7 @@ public class InformasiFragment extends Fragment {
                 fragment.setArguments(bundle);
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.replace(frame, fragment);
                 fragmentTransaction.addToBackStack("faculty");
                 fragmentTransaction.commit();
             }
@@ -132,7 +141,7 @@ public class InformasiFragment extends Fragment {
                 fragment.setArguments(bundle);
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.replace(frame, fragment);
                 fragmentTransaction.addToBackStack("faculty");
                 fragmentTransaction.commit();
             }
@@ -147,7 +156,7 @@ public class InformasiFragment extends Fragment {
                 fragment.setArguments(bundle);
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.replace(frame, fragment);
                 fragmentTransaction.addToBackStack("faculty");
                 fragmentTransaction.commit();
             }
