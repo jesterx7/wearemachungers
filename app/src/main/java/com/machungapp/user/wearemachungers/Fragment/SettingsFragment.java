@@ -33,6 +33,8 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.settings, container, false);
 
+        getActivity().setTitle("Settings");
+
         edtOldPassword = view.findViewById(R.id.edtOldPassword);
         edtNewPassword = view.findViewById(R.id.edtNewPassword);
         edtConfirmPassword = view.findViewById(R.id.edtConfirmPassword);

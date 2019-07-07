@@ -27,6 +27,9 @@ public class InformasiFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.informasi, container, false);
+
+        getActivity().setTitle("About Ma Chung");
+
         imgCoverInformasi = view.findViewById(R.id.imgCoverInformasi);
         imgExpandFaculty = view.findViewById(R.id.imgExpandFaculty);
         imgExpandFaculty.setTag(R.drawable.ic_arrow_drop_down);

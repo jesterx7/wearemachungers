@@ -25,6 +25,9 @@ public class KontakFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.list_kontak, container, false);
+
+        getActivity().setTitle("Contact");
+
         rvListKontak = view.findViewById(R.id.rvListKontak);
         listKontak = new ArrayList<>();
 

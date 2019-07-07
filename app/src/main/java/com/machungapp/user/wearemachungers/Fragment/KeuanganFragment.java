@@ -17,6 +17,8 @@ public class KeuanganFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.keuangan, container, false);
 
+        getActivity().setTitle("Finance");
+
         return view;
     }
 }

@@ -1,6 +1,8 @@
 package com.machungapp.user.wearemachungers.Fragment;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +11,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -35,12 +40,26 @@ public class FAQFragment extends Fragment {
     private int total_item = 0;
     private int last_visible_item;
     private boolean isLoading = false, isMaxData = false;
-    private String last_node = "", last_key = "";
+    private String last_node = "", last_key = "", frame = "";
+    private int frame_id = 0, menu_id = 0;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.list_faq, container, false);
+
+        getActivity().setTitle("FAQ");
+        frame = getArguments().getString("frame");
+        setHasOptionsMenu(true);
+
+        if (frame.equals("general")) {
+            frame_id = R.id.content_frame;
+            menu_id = R.menu.main;
+        } else {
+            frame_id = R.id.content_frame_user;
+            menu_id = R.menu.user;
+        }
+
         rvListFAQ = view.findViewById(R.id.rvListFAQ);
         progressBar = view.findViewById(R.id.progressbarFAQ);
 
@@ -75,6 +94,29 @@ public class FAQFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(menu_id, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_refresh || id == R.id.action_refresh_user) {
+            Fragment fragment = new FAQFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("frame", frame);
+            fragment.setArguments(bundle);
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(frame_id, fragment);
+            fragmentTransaction.addToBackStack("berita");
+            fragmentTransaction.commit();
+        }
+        return true;
     }
 
     private void getFAQ() {

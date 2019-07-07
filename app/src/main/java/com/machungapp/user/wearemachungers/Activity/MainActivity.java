@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity
                     switch (item.getItemId()) {
                         case R.id.nav_bot_home:
                             Fragment fragmentHome = new BeritaFragment();
+                            Bundle bundleHome = new Bundle();
+                            bundleHome.putString("frame", "general");
+                            fragmentHome.setArguments(bundleHome);
                             FragmentManager fragmentManagerHome = getFragmentManager();
                             FragmentTransaction fragmentTransactionHome = fragmentManagerHome.beginTransaction();
                             fragmentTransactionHome.replace(R.id.content_frame, fragmentHome);
@@ -44,6 +47,9 @@ public class MainActivity extends AppCompatActivity
                             return true;
                         case R.id.nav_bot_agenda:
                             Fragment fragmentAgenda = new AgendaFragment();
+                            Bundle bundleAgenda = new Bundle();
+                            bundleAgenda.putString("frame", "general");
+                            fragmentAgenda.setArguments(bundleAgenda);
                             FragmentManager fragmentManagerAgenda = getFragmentManager();
                             FragmentTransaction fragmentTransactionAgenda = fragmentManagerAgenda.beginTransaction();
                             fragmentTransactionAgenda.replace(R.id.content_frame, fragmentAgenda);
@@ -89,6 +95,9 @@ public class MainActivity extends AppCompatActivity
         navigationView.setCheckedItem(R.id.nav_berita);
 
         Fragment fragment = new BeritaFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("frame", "general");
+        fragment.setArguments(bundle);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_frame, fragment);
@@ -106,27 +115,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_refresh) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -136,6 +124,9 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_berita) {
             Fragment fragment = new BeritaFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("frame", "general");
+            fragment.setArguments(bundle);
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.content_frame, fragment);
@@ -143,6 +134,9 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
         } else if (id == R.id.nav_newsletter) {
             Fragment fragment = new NewsletterFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("frame", "general");
+            fragment.setArguments(bundle);
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.content_frame, fragment);
@@ -150,6 +144,9 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
         } else if (id == R.id.nav_agenda) {
             Fragment fragment = new AgendaFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("frame", "general");
+            fragment.setArguments(bundle);
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.content_frame, fragment);
@@ -167,6 +164,9 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
         } else if (id == R.id.nav_faq) {
             Fragment fragment = new FAQFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("frame", "general");
+            fragment.setArguments(bundle);
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.content_frame, fragment);
@@ -174,6 +174,9 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
         } else if (id == R.id.nav_life_at) {
             Fragment fragment = new LifeAtMachungFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("frame", "general");
+            fragment.setArguments(bundle);
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.content_frame, fragment);

@@ -42,6 +42,14 @@ public class ListBeritaAdapter extends RecyclerView.Adapter<ListBeritaAdapter.Be
         return listBerita;
     }
 
+    public String getLastItemLastEdit() {
+        return listBerita.get(listBerita.size() - 1).getLast_edit();
+    }
+
+    public void removeLastItem() {
+        listBerita.remove(listBerita.size() - 1);
+    }
+
 
     @Override
     public BeritaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

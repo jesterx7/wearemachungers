@@ -22,6 +22,8 @@ public class SejarahFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.sejarah_machung, container, false);
 
+        getActivity().setTitle("About Ma Chung");
+
         imgCoverSejarah = view.findViewById(R.id.imgCoverSejarah);
         dvSejarah = view.findViewById(R.id.dvSejarahMachung);
 

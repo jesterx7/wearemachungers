@@ -24,6 +24,8 @@ public class VisiMisiFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.visi_misi, container, false);
 
+        getActivity().setTitle("About Ma Chung");
+
         dvVisi = view.findViewById(R.id.dvVisi);
         dvMisi = view.findViewById(R.id.dvMisi);
         imgVisiMisiCover = view.findViewById(R.id.imgVisiMisiCover);

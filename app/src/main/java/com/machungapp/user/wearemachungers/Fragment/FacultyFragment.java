@@ -39,6 +39,8 @@ public class FacultyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.faculty, container, false);
 
+        getActivity().setTitle("Faculty");
+
         imgCoverFaculty = view.findViewById(R.id.imgCoverFaculty);
         tvFacultyName = view.findViewById(R.id.tvFacultyName);
         tvFacultyContent = view.findViewById(R.id.tvFacultyContent);
